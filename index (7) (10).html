@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="theme-color" content="#0A1A3A">
+    <title>Adv. Pallab Kumar Gorain — Legal Portfolio</title>
+
+    <!-- External fonts & icons (HTTPS) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --deep-navy: #0A1A3A;
+            --royal-blue: #1F4DD6;
+            --bright-blue: #4D8CFF;
+            --soft-blue: #E6F0FF;
+            --pure-white: #FFFFFF;
+            --soft-grey: #E6E9EF;
+            --text-grey: #8C92A3;
+            --dark-text: #333333;
+            --gold: #C9A227;
+            --radius: 12px;
+            --shadow: 0 8px 30px rgba(10, 42, 108, 0.12);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        html { scroll-behavior: smooth; }
+        body { color: var(--dark-text); line-height: 1.6; background-color: var(--pure-white); }
+
+        /* Header */
+        header {
+            background-color: var(--deep-navy);
+            color: var(--pure-white);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: all 0.25s ease;
+        }
+        .header-container {
+            display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto;
+        }
+        .logo { display:flex; gap:12px; align-items:center; text-decoration:none; color:var(--pure-white); }
+        .logo-badge {
+            width:44px; height:44px; border-radius:10px; display:grid; place-items:center;
+            background: linear-gradient(135deg,var(--gold),#e6b832); color:var(--deep-navy);
+            font-weight:700; font-family: 'Playfair Display', serif;
+            box-shadow: var(--shadow);
+        }
+        nav ul { display:flex; list-style:none; gap:1.5rem; }
+        nav a { color:var(--pure-white); text-decoration:none; font-weight:600; transition:color .2s; }
+        nav a:hover { color:var(--bright-blue); }
+
+        .whatsapp-top { display:inline-grid; place-items:center; width:42px; height:42px; border-radius:10px;
+            background:#25D366; color:#fff; text-decoration:none; box-shadow:0 8px 20px rgba(37,211,102,0.14); }
+
+        .mobile-menu { display:none; background:none; border:none; color:var(--pure-white); font-size:1.3rem; cursor:pointer; }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--deep-navy), #1a2c5a);
+            color:var(--pure-white);
+            padding:12rem 5% 8rem;
+            display:flex; align-items:center; justify-content:space-between; min-height:100vh; overflow:hidden;
+        }
+        .hero-content { max-width:600px; z-index:1; }
+        .eyebrow { display:inline-block; padding:6px 10px; border-radius:999px; background:rgba(201,162,39,0.12);
+            color:var(--gold); font-weight:700; margin-bottom:12px; font-size:.85rem; }
+        .hero h1 { font-family:'Playfair Display',serif; font-size:3rem; line-height:1.1; margin-bottom:1rem; }
+        .name-underline { position:relative; display:inline-block; padding-bottom:6px; }
+        .name-underline::after { content:""; position:absolute; left:0; right:0; bottom:0; height:4px; border-radius:4px;
+            background: linear-gradient(90deg,var(--gold), rgba(201,162,39,0.6)); transform:translateY(6px); opacity:0.9; }
+        .hero p { color:var(--soft-grey); font-size:1.05rem; margin-bottom:1.5rem; }
+
+        .cta-buttons { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:1.5rem; }
+        .btn { padding:.7rem 1.4rem; border-radius:8px; font-weight:600; text-decoration:none; display:inline-flex; gap:10px; align-items:center; cursor:pointer; border:none; }
+        .btn-primary { background:var(--royal-blue); color:var(--pure-white); }
+        .btn-primary:hover { background:var(--bright-blue); transform:translateY(-3px); box-shadow:0 10px 20px rgba(31,77,214,0.22); }
+        .btn-secondary { background:transparent; color:var(--pure-white); border:2px solid rgba(255,255,255,0.14); }
+        .connect-btn { background: linear-gradient(180deg,var(--gold),#e6b832); color:var(--deep-navy); padding:8px 12px; border-radius:999px; font-weight:700; }
+
+        .hero-meta { margin-top:8px; display:flex; gap:1rem; color:rgba(255,255,255,0.9); flex-wrap:wrap; font-size:.95rem; }
+        .hero-image { width:40%; display:flex; justify-content:center; z-index:1; }
+        .profile-card { width:350px; height:450px; border-radius:20px; overflow:hidden; box-shadow:0 20px 40px rgba(0,0,0,0.22); background:linear-gradient(135deg,var(--royal-blue),var(--bright-blue)); display:flex; align-items:center; justify-content:center; }
+        .profile-card img { width:100%; height:100%; object-fit:cover; display:block; }
+
+        /* Sections */
+        section { padding:6rem 5%; }
+        .section-header { text-align:center; margin-bottom:3.5rem; }
+        .section-header h2 { font-size:2.25rem; color:var(--deep-navy); font-family:'Playfair Display',serif; display:inline-block; position:relative; }
+        .section-header h2::after { content:""; position:absolute; width:80px; height:4px; background:var(--royal-blue); bottom:-12px; left:50%; transform:translateX(-50%); border-radius:2px; }
+        .label { display:inline-block; padding:6px 10px; border-radius:999px; background:linear-gradient(180deg, rgba(201,162,39,0.08), rgba(201,162,39,0.02)); color:var(--gold); font-weight:700; letter-spacing:1px; margin-bottom:12px; }
+
+        .about-container { display:flex; gap:2.5rem; max-width:1200px; margin:0 auto; align-items:center; }
+        .about-content h3 { font-family:'Playfair Display',serif; color:var(--deep-navy); margin-bottom:1rem; }
+        .quote-box { background:var(--soft-blue); padding:1.2rem; border-radius:10px; border-left:4px solid var(--royal-blue); }
+
+        .practice-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.5rem; max-width:1200px; margin:0 auto; }
+        .practice-card { background:var(--pure-white); padding:1.8rem; border-radius:12px; box-shadow:0 5px 15px rgba(0,0,0,0.05); text-align:center; }
+        .practice-icon { font-size:2rem; color:var(--royal-blue); margin-bottom:8px; }
+
+        .dark-services { background: linear-gradient(180deg,var(--deep-navy),var(--royal-blue)); color:white; padding:2rem; border-radius:12px; margin-top:1.5rem; }
+        .dark-blocks { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:1rem; margin-top:1rem; }
+
+        .services-container { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:1.25rem; max-width:1100px; margin:0 auto; }
+        .service-card { background:var(--pure-white); padding:1.6rem; border-radius:12px; box-shadow:0 5px 18px rgba(0,0,0,0.06); text-align:center; }
+
+        .timeline-container { max-width:1000px; margin:0 auto; position:relative; }
+        .timeline { background:var(--soft-blue); }
+        .timeline-item { margin-bottom:2rem; }
+        .timeline-content { background:var(--pure-white); padding:1.2rem; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.05); }
+
+        .testimonials-container { max-width:1000px; margin:0 auto; }
+        .testimonial-slider { display:flex; gap:1rem; overflow:auto; scroll-snap-type:x mandatory; padding-bottom:1rem; }
+        .testimonial-card { flex:0 0 100%; scroll-snap-align:start; background:var(--pure-white); padding:1.2rem; border-radius:10px; box-shadow:0 5px 18px rgba(0,0,0,0.06); }
+
+        /* Contact */
+        .contact { background-color:var(--deep-navy); color:var(--pure-white); }
+        .contact-container { display:flex; gap:2rem; max-width:1100px; margin:0 auto; }
+        .contact-form { flex:1; }
+        .form-group { margin-bottom:1rem; }
+        .form-group label { display:block; margin-bottom:.5rem; font-weight:600; color:var(--pure-white); }
+        .form-control { width:100%; padding:.75rem 1rem; border-radius:8px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.04); color:var(--pure-white); }
+        .form-control::placeholder { color:rgba(255,255,255,0.65); }
+        .contact-info { flex:1; display:flex; flex-direction:column; gap:1rem; }
+
+        /* Footer */
+        footer { background:var(--deep-navy); color:var(--pure-white); padding:3rem 5% 2rem; }
+        .footer-container { display:flex; gap:2rem; max-width:1200px; margin:0 auto; flex-wrap:wrap; }
+
+        .social-links a { display:inline-grid; place-items:center; width:40px; height:40px; border-radius:50%; background:rgba(255,255,255,0.06); color:var(--pure-white); text-decoration:none; }
+
+        .whatsapp-fixed { position:fixed; right:16px; bottom:18px; z-index:1400; }
+        .whatsapp-cta { display:inline-grid; place-items:center; width:60px; height:60px; border-radius:999px; background:#25D366; color:#fff; font-size:1.4rem; text-decoration:none; box-shadow:0 12px 30px rgba(37,211,102,0.18); }
+
+        /* Responsive */
+        @media (max-width:1024px) {
+            .hero { flex-direction:column; text-align:center; padding:10rem 5% 5rem; }
+            .hero-image { width:100%; margin-top:1.25rem; }
+            .about-container { flex-direction:column; }
+            .contact-container { flex-direction:column; }
+        }
+        @media (max-width:768px) {
+            .mobile-menu { display:block; }
+            nav ul { display:none; position:absolute; top:100%; left:0; width:100%; background:var(--deep-navy); flex-direction:column; padding:0.5rem 0; box-shadow:0 6px 14px rgba(0,0,0,0.12); }
+            nav ul.show { display:flex; }
+            nav ul li { padding:.75rem 0; text-align:center; }
+            .hero h1 { font-size:2rem; }
+            .cta-buttons { flex-direction:column; align-items:center; }
+            .btn { width:100%; max-width:320px; justify-content:center; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <a href="#home" class="logo" aria-label="Go to home">
+                <div class="logo-badge" aria-hidden="true">PK</div>
+                <div>
+                    <div style="font-weight:700; font-family:'Playfair Display',serif">Adv. Pallab Kumar Gorain</div>
+                    <div style="font-size:.85rem; color:var(--soft-grey)">Law Student & Legal Practitioner</div>
+                </div>
+            </a>
+
+            <nav>
+                <button class="mobile-menu" id="mobile-menu" aria-label="Toggle navigation">
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+                <ul id="nav-menu" role="menubar" aria-label="Primary navigation">
+                    <li role="none"><a role="menuitem" href="#home">Home</a></li>
+                    <li role="none"><a role="menuitem" href="#about">About</a></li>
+                    <li role="none"><a role="menuitem" href="#practice">Practice Areas</a></li>
+                    <li role="none"><a role="menuitem" href="#services">Services</a></li>
+                    <li role="none"><a role="menuitem" href="#timeline">Experience</a></li>
+                    <li role="none"><a role="menuitem" href="#testimonials">Testimonials</a></li>
+                    <li role="none"><a role="menuitem" href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <a class="whatsapp-top" href="https://wa.me/qr/SOTWGEYA74EMM1" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+                <i class="fab fa-whatsapp" aria-hidden="true"></i>
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <main>
+        <section class="hero" id="home" aria-label="Hero">
+            <div class="hero-content">
+                <div class="eyebrow">Welcome — Namaste 🙏</div>
+                <h1><span class="name-underline">Advocate Pallab Kumar Gorain</span></h1>
+                <p>Driven by passion, purpose, and professionalism in India's justice system.</p>
+
+                <div class="cta-buttons" role="group" aria-label="Primary actions">
+                    <a href="#contact" class="btn btn-primary"><i class="fas fa-calendar-check" aria-hidden="true"></i> Schedule Consultation</a>
+                    <a href="#timeline" class="btn btn-secondary"><i class="fas fa-file-lines" aria-hidden="true"></i> My Resume</a>
+                    <a class="connect-btn" href="https://wa.me/qr/SOTWGEYA74EMM1" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i> Connect</a>
+                </div>
+
+                <div class="hero-meta">
+                    <span><i class="fas fa-envelope" aria-hidden="true"></i> <a href="mailto:pallabgorain50@gmail.com" style="color:inherit; text-decoration:underline;">pallabgorain50@gmail.com</a></span>
+                    <span><i class="fas fa-location-dot" aria-hidden="true"></i> Purulia District Court, West Bengal</span>
+                </div>
+            </div>
+
+            <div class="hero-image" aria-hidden="false">
+                <div class="profile-card" role="img" aria-label="Portrait of Pallab Kumar Gorain">
+                    <!-- If this image is public in your repo, it will load. Otherwise replace with a public URL or a local file in repo. -->
+                    <img src="https://raw.githubusercontent.com/Pallab-office-LAW-1/Pallab-office-LAW--W.-B/2780b7a7e39a17a7381de1658997df5cb50542fb/1759594964369-0199b008-314e-799d-af11-aecbd3ad5b76.png" alt="Portrait of Pallab Kumar Gorain">
+                </div>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="about" id="about" aria-labelledby="about-heading">
+            <div class="section-header">
+                <div class="label">About Me</div>
+                <h2 id="about-heading">Committed to Justice & Excellence</h2>
+                <p>Learn more about my journey and commitment to justice</p>
+            </div>
+
+            <div class="about-container">
+                <div style="flex:1;display:flex;justify-content:center">
+                    <div class="profile-card" style="width:300px;height:380px;border-radius:16px;overflow:hidden;">
+                        <img src="https://raw.githubusercontent.com/Pallab-office-LAW-1/Pallab-office-LAW--W.-B/2780b7a7e39a17a7381de1658997df5cb50542fb/1759594964369-0199b008-314e-799d-af11-aecbd3ad5b76.png" alt="Portrait">
+                    </div>
+                </div>
+
+                <div class="about-content" style="flex:1;">
+                    <h3>Pallab Kumar Gorain</h3>
+                    <p>I'm Pallab Kumar Gorain, a committed and enthusiastic law student pursuing a B.A.LL.B. at Imamul Hai Khan Law College, Bokaro, currently gaining practical experience at Purulia District Court, West Bengal.</p>
+                    <p>My work is shaped by integrity, empathy, and a deep commitment to India's constitutional values. Every case, every client, every effort — rooted in purpose.</p>
+
+                    <div class="quote-box">
+                        <p>"Justice is not a service—it's a duty. And I'm here to serve."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Practice Areas -->
+        <section class="practice-areas" id="practice" aria-labelledby="practice-heading">
+            <div class="section-header">
+                <div class="label">Practice Areas</div>
+                <h2 id="practice-heading">How Can I Help You?</h2>
+                <p>Expert legal guidance across multiple domains of law</p>
+            </div>
+
+            <div class="practice-grid" role="list">
+                <div class="practice-card" role="listitem">
+                    <div class="practice-icon"><i class="fas fa-gavel" aria-hidden="true"></i></div>
+                    <h3>Criminal Law</h3>
+                    <p>FIRs, bail applications, and defence strategies under the IPC.</p>
+                </div>
+                <div class="practice-card" role="listitem">
+                    <div class="practice-icon"><i class="fas fa-home" aria-hidden="true"></i></div>
+                    <h3>Family Law</h3>
+                    <p>Divorce, maintenance, domestic violence, and guardianship matters.</p>
+                </div>
+                <div class="practice-card" role="listitem">
+                    <div class="practice-icon"><i class="fas fa-balance-scale" aria-hidden="true"></i></div>
+                    <h3>Constitutional Law</h3>
+                    <p>Protecting fundamental rights and engaging in public interest litigation.</p>
+                </div>
+                <div class="practice-card" role="listitem">
+                    <div class="practice-icon"><i class="fas fa-landmark" aria-hidden="true"></i></div>
+                    <h3>Property Law</h3>
+                    <p>Resolving land disputes and handling property documentation.</p>
+                </div>
+                <div class="practice-card" role="listitem">
+                    <div class="practice-icon"><i class="fas fa-file-contract" aria-hidden="true"></i></div>
+                    <h3>Legal Drafting</h3>
+                    <p>Professional notices, agreements, and court pleadings.</p>
+                </div>
+                <div class="practice-card" role="listitem">
+                    <div class="practice-icon"><i class="fas fa-search" aria-hidden="true"></i></div>
+                    <h3>Legal Research</h3>
+                    <p>Advanced research using SCC Online, Indian Kanoon & case databases.</p>
+                </div>
+            </div>
+
+            <div class="dark-services" aria-hidden="false">
+                <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap">
+                    <div style="font-weight:700">Professional Offerings</div>
+                    <div style="color:rgba(255,255,255,0.85);font-size:0.92rem">Consultation • Drafting • Court Representation</div>
+                </div>
+
+                <div class="dark-blocks">
+                    <div class="dark-block"><strong>Consultation</strong><div style="margin-top:6px;color:rgba(255,255,255,0.85)">Personalized legal guidance with clear next steps.</div></div>
+                    <div class="dark-block"><strong>Drafting</strong><div style="margin-top:6px;color:rgba(255,255,255,0.85)">Notices, agreements and pleadings with attention to detail.</div></div>
+                    <div class="dark-block"><strong>Court Representation</strong><div style="margin-top:6px;color:rgba(255,255,255,0.85)">Practical representation and hearing support at Purulia Court.</div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section class="services" id="services" aria-labelledby="services-heading">
+            <div class="section-header">
+                <h2 id="services-heading">Legal Services</h2>
+                <p>Comprehensive legal assistance tailored to your needs</p>
+            </div>
+
+            <div class="services-container">
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-comments" aria-hidden="true"></i></div>
+                    <h3>Consultation & Strategy</h3>
+                    <p>Clear, actionable legal advice to help you understand your position and options.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-pen-fancy" aria-hidden="true"></i></div>
+                    <h3>Documentation & Drafting</h3>
+                    <p>Meticulous preparation of legal notices, agreements, and court petitions.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon"><i class="fas fa-gavel" aria-hidden="true"></i></div>
+                    <h3>Courtroom Representation</h3>
+                    <p>Practical advocacy for hearings and proceedings at the Purulia District Court.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline -->
+        <section class="timeline" id="timeline" aria-labelledby="timeline-heading">
+            <div class="section-header">
+                <div class="label">My Journey</div>
+                <h2 id="timeline-heading">Academic Journey & Court Practice</h2>
+                <p>Academic growth and practical legal experience</p>
+            </div>
+
+            <div class="timeline-container">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2021 – Present</div>
+                        <h3>Enrolled in B.A.LL.B. Course</h3>
+                        <p>Started integrated law degree at Imamul Hai Khan Law College, Bokaro.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2023 – Present</div>
+                        <h3>Beginning Court Practice</h3>
+                        <p>Gaining practical experience at Purulia District Court, West Bengal.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2024</div>
+                        <h3>Legal Research & Documentation</h3>
+                        <p>Enhanced case research using SCC Online and Indian Kanoon.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-year">Future</div>
+                        <h3>Preparing for Legal Career</h3>
+                        <p>Building foundation for future practice and contributions to justice.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="testimonials" id="testimonials" aria-labelledby="testimonials-heading">
+            <div class="section-header">
+                <div class="label">References</div>
+                <h2 id="testimonials-heading">Academic & Professional References</h2>
+                <p>What professionals say about my work</p>
+            </div>
+
+            <div class="testimonials-container">
+                <div class="testimonial-slider">
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Pallab's dedication to understanding legal concepts and practical application is impressive. A promising future lawyer."</p>
+                        <p class="testimonial-author">Senior Advocate M. Sharma</p>
+                        <p class="testimonial-role">Mentor at Purulia Court</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"His research skills and attention to detail in legal documentation are exceptional for a student."</p>
+                        <p class="testimonial-author">Prof. R. Das</p>
+                        <p class="testimonial-role">Faculty, Imamul Hai Khan Law College</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <p class="testimonial-text">"Pallab combines academic knowledge with practical insight. His commitment to justice is evident."</p>
+                        <p class="testimonial-author">A. Sengupta</p>
+                        <p class="testimonial-role">Court Clerk, Purulia District Court</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="contact" id="contact" aria-labelledby="contact-heading">
+            <div class="section-header">
+                <div class="label">Get In Touch</div>
+                <h2 id="contact-heading">Contact & Appointment</h2>
+                <p>Ready to discuss your legal matter? Let's connect.</p>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form id="contactForm" aria-label="Contact form">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number (Optional)</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Your Phone Number">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Brief Description *</label>
+                            <textarea id="message" class="form-control" rows="5" placeholder="How can I help?" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary" style="width:100%;">
+                            <i class="fas fa-paper-plane" aria-hidden="true"></i> Send Message (Opens in your email)
+                        </button>
+                    </form>
+
+                    <noscript>
+                        <p style="color:var(--text-grey); margin-top:1rem;">JavaScript is disabled in your browser. To contact by email, write to <a href="mailto:pallabgorain50@gmail.com">pallabgorain50@gmail.com</a>.</p>
+                    </noscript>
+
+                    <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-grey);">Privacy: Your contact details will only be used to respond to your query.</p>
+                </div>
+
+                <div class="contact-info">
+                    <div style="background:rgba(255,255,255,0.04);padding:1rem;border-radius:8px;">
+                        <h3 style="color:var(--bright-blue); margin-bottom:.5rem;">Office</h3>
+                        <p>Purulia District Court, West Bengal</p>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.04);padding:1rem;border-radius:8px;">
+                        <h3 style="color:var(--bright-blue); margin-bottom:.5rem;">Email</h3>
+                        <p><a href="mailto:pallabgorain50@gmail.com" style="color:inherit; text-decoration:underline;">pallabgorain50@gmail.com</a></p>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.04);padding:1rem;border-radius:8px;">
+                        <h3 style="color:var(--bright-blue); margin-bottom:.5rem;">Availability</h3>
+                        <p>Consultations by prior appointment. Court appearances & urgent matters as scheduled.</p>
+                    </div>
+
+                    <div style="background:rgba(255,255,255,0.04);padding:1rem;border-radius:8px;">
+                        <h3 style="color:var(--bright-blue); margin-bottom:.5rem;">Quick Connect</h3>
+                        <a class="btn btn-primary" href="https://wa.me/qr/SOTWGEYA74EMM1" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-whatsapp" aria-hidden="true"></i> Chat on WhatsApp
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div style="flex:1; min-width:260px;">
+                <div style="display:flex; align-items:center; gap:12px; margin-bottom:12px;">
+                    <div class="logo-badge" style="width:52px;height:52px;border-radius:10px;">PK</div>
+                    <div>
+                        <div style="font-weight:700">Adv. Pallab Kumar Gorain</div>
+                        <div style="color:var(--text-grey);font-size:0.92rem">Law Student & Legal Intern</div>
+                    </div>
+                </div>
+                <p style="color:var(--text-grey);">Building a foundation for future legal practice with integrity and dedication.</p>
+                <div style="margin-top:12px;">
+                    <a class="social-links" href="#" aria-label="LinkedIn" style="margin-right:8px;"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                    <a class="social-links" href="#" aria-label="Twitter" style="margin-right:8px;"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a class="social-links" href="mailto:pallabgorain50@gmail.com" aria-label="Email" style="margin-right:8px;"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                    <a class="social-links" href="https://wa.me/qr/SOTWGEYA74EMM1" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                </div>
+            </div>
+
+            <div style="min-width:180px;">
+                <h3 style="color:var(--bright-blue); margin-bottom:.8rem;">Quick Links</h3>
+                <ul style="list-style:none; color:var(--text-grey);">
+                    <li><a href="#about" style="color:inherit; text-decoration:none;">About</a></li>
+                    <li><a href="#practice" style="color:inherit; text-decoration:none;">Practice Areas</a></li>
+                    <li><a href="#services" style="color:inherit; text-decoration:none;">Services</a></li>
+                    <li><a href="#timeline" style="color:inherit; text-decoration:none;">Experience</a></li>
+                    <li><a href="#contact" style="color:inherit; text-decoration:none;">Contact</a></li>
+                </ul>
+            </div>
+
+            <div style="min-width:200px;">
+                <h3 style="color:var(--bright-blue); margin-bottom:.8rem;">Contact Info</h3>
+                <div style="color:var(--text-grey); display:flex; gap:8px; align-items:center; margin-bottom:.6rem;">
+                    <i class="fas fa-map-marker-alt" aria-hidden="true" style="color:var(--bright-blue);"></i>
+                    <span>Purulia Court, West Bengal</span>
+                </div>
+                <div style="color:var(--text-grey); display:flex; gap:8px; align-items:center;">
+                    <i class="fas fa-envelope" aria-hidden="true" style="color:var(--bright-blue);"></i>
+                    <span>pallabgorain50@gmail.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin-top:2rem; color:var(--text-grey); font-size:.9rem;">
+            <p>&copy; 2025 Pallab Kumar Gorain. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp CTA -->
+    <div class="whatsapp-fixed">
+        <a class="whatsapp-cta" href="https://wa.me/qr/SOTWGEYA74EMM1" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
+        </a>
+    </div>
+
+    <script>
+        // Toggle mobile nav
+        (function() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            const navMenu = document.getElementById('nav-menu');
+            mobileMenu.addEventListener('click', () => navMenu.classList.toggle('show'));
+
+            // Close on link click (mobile)
+            document.querySelectorAll('#nav-menu a').forEach(a => {
+                a.addEventListener('click', () => navMenu.classList.remove('show'));
+            });
+        })();
+
+        // Contact form: create a properly encoded mailto and open user's email client
+        (function() {
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const name = document.getElementById('name').value.trim();
+                const email = document.getElementById('email').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const message = document.getElementById('message').value.trim();
+
+                // Basic validation
+                if (!name || !email || !message) {
+                    alert('Please fill in the required fields (Name, Email, Message).');
+                    return;
+                }
+
+                const subject = `Legal Consultation Request from ${name}`;
+                const bodyLines = [
+                    `Name: ${name}`,
+                    `Email: ${email}`,
+                    `Phone: ${phone || 'N/A'}`,
+                    '',
+                    'Message:',
+                    message
+                ];
+                const body = bodyLines.join('\r\n');
+
+                const mailto = `mailto:pallabgorain50@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+                // Open in same tab to trigger default mail client
+                window.location.href = mailto;
+            });
+        })();
+
+        // Header scroll effect
+        (function() {
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    header.style.backgroundColor = 'rgba(10,26,58,0.95)';
+                    header.style.backdropFilter = 'blur(6px)';
+                } else {
+                    header.style.backgroundColor = 'var(--deep-navy)';
+                    header.style.backdropFilter = 'none';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
